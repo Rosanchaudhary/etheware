@@ -1,0 +1,16 @@
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+}
+
+.back-text {
+  font-weight: 600;
+  color: blue;
+}
+.info-text {
+  font-size: 14px;
+}

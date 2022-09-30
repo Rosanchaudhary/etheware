@@ -1,0 +1,70 @@
+.checkout-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  height: 120vh;
+}
+.checkout-container {
+  display: flex;
+  flex-direction: column;
+
+  width: 80%;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+ 
+}
+.checkout-text {
+  font-size: 24px;
+  font-weight: 600;
+}
+.order-summery {
+  font-size: 14px;
+  font-weight: 400;
+  color: #3068fe;
+}
+.title {
+  font-size: 34px;
+  font-weight: 600;
+}
+.bottom-padding{
+    padding-bottom:20px ;
+}
+.payment-options {
+  width: 80%;
+}
+.payment-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid grey;
+  border-radius: 12px;
+  height: 80px;
+  width: 50%;
+  padding: 10px;
+}
+.payment-title{
+    font-size: 20px;
+    font-weight: 600;
+}
+.payment-subtitle{
+    font-size: 12px;
+    font-weight: 400;
+}
+.information-text {
+  height: 80px;
+  width: 48%;
+}
+.submit-button{
+    width: 40%;
+    height: 40px;
+    background-color: #306fda;
+    border: none;
+    border-radius: 12px;
+    font-size: 20px;
+    color: whitesmoke;
+}

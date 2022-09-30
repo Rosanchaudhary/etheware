@@ -1,0 +1,16 @@
+.text-field-border {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-bottom: 20px;
+}
+.text-lable{
+  font-weight: 600;
+  font-size: 16px;
+  color: grey;
+}
+.text-field-border input {
+  border-radius: 6px;
+  height: 40px;
+  border: 1px solid grey;
+}

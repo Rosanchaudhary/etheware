@@ -1,0 +1,55 @@
+.containers {
+  display: flex;
+  flex-direction: column;
+}
+.top-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(90deg, #f6a353, #ab19ea, #438ed1);
+  height: 120vh;
+}
+.input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: flex-start;
+  height: max-content;
+  width: 500px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+}
+.container-title {
+  font-size: 28px;
+  font-weight: 500;
+}
+.filled-button {
+  height: 26px;
+  width: 100%;
+  border-radius: 20px;
+  border: none;
+  background-color: #3068fe;
+  color: white;
+  font-size: 12px;
+}
+
+.border-button {
+  height: 26px;
+  width: 100%;
+  border-radius: 20px;
+
+  background-color: white;
+  color: black;
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+.tos-message {
+  font-size: 10px;
+  font-weight: 500;
+}
+.statement {
+  font-size: 14px;
+  font-weight: 500;
+}
