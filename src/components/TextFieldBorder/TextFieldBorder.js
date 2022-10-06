@@ -5,7 +5,7 @@ const TextFieldBorder = ({ value, setValue, placeholder,label}) => {
     <div className="text-field-border">
       <div className="text-lable">{label}</div>
       <input
-        placeholder={placeholder}
+        placeholder={placeholder} 
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />

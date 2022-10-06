@@ -1,7 +1,11 @@
 import React from "react";
-import "./SelectDate.css"
+import "./SelectDate.css" 
+
+import { useDispatch } from "react-redux";
+import { nextStep, previousStep } from "../../redux/registerSlice";
 
 const SelectDate = () => {
+  const dispatch = useDispatch();
   //const [organizationName, setOrganizationName] = useState("");
   return (
     <div className="vision-container">
@@ -31,8 +35,8 @@ const SelectDate = () => {
           }}
         ></div>
         <div className="button-container">
-          <div className="back-text">Back</div>
-          <button>Next</button>
+          <div className="back-text" onClick={() => dispatch(previousStep())}>Back</div>
+          <button onClick={() => dispatch(nextStep())}>Next</button>
         </div>
       </div>
     </div>

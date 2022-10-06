@@ -6,6 +6,9 @@ import Building from "../../assets/building.png";
 import ProfileImage from "../../assets/addphoto.png";
 import { FaCheck } from "react-icons/fa";
 
+import { setCategory} from "../../redux/registerSlice";
+import { useDispatch } from "react-redux";
+
 const options = [
   { id: 0, icon: Call, title: "Individual" },
   { id: 1, icon: Pointer, title: "Business or Enterprise" },
@@ -13,7 +16,8 @@ const options = [
 ];
 
 const Category = () => {
-  const [category, setCategory] = useState({});
+  const dispatch = useDispatch();
+  const [category, setTheCategory] = useState({});
   return (
     <div className="vision-container">
       <div className="form-container">
@@ -22,11 +26,11 @@ const Category = () => {
         </div>
         <div className="progress-bar"></div>
         <div className="vision-form"></div>
-        <div className="title-text"> What's your main vision?</div>
+        <div className="title-text"> What category benefits you?</div>
         {options.map((option) => (
           <div
             className="options"
-            onClick={() => setCategory(option)}
+            onClick={() => setTheCategory(option)}
             key={option.id}
             style={{
               border:
@@ -67,7 +71,7 @@ const Category = () => {
               Mon - Fri
             </div>
           </div>
-          <button>Next</button>
+          <button  onClick={()=>dispatch(setCategory(category.title))}>Next</button>
         </div>
       </div>
     </div>

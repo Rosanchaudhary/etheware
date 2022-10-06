@@ -1,7 +1,13 @@
 import React, { useState } from "react";
-import "./OrganizationName.css";
 
+
+import { useDispatch } from "react-redux";
+import { addUserDetails, previousStep } from "../../redux/registerSlice";
+
+
+import "./OrganizationName.css";
 const OrganizationName = () => {
+  const dispatch = useDispatch();
   const [organizationName, setOrganizationName] = useState("");
   return (
     <div className="vision-container">
@@ -32,8 +38,12 @@ const OrganizationName = () => {
           }}
         ></div>
         <div className="button-container">
-          <div className="back-text">Back</div>
-          <button>Next</button>
+          <div className="back-text" onClick={() => dispatch(previousStep())}>
+            Back
+          </div>
+
+          <button onClick={() => dispatch(addUserDetails(organizationName))}>Next</button>
+          {/* <button onClick={() => dispatch(nextStep())}>Next</button> */}
         </div>
       </div>
     </div>

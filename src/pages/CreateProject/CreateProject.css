@@ -4,7 +4,18 @@
   justify-content: space-around;
   align-items: center;
   background-color: white;
-  height: 120vh;
+  height: 120vh; 
+}
+@media (max-width: 880px) {
+  .project-container {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    height: 120vh; 
+  }
+  
 }
 .create-project {
   display: flex;

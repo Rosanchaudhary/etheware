@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 
+import { useDispatch } from "react-redux";
+import { nextStep, previousStep } from "../../redux/registerSlice";
+
 const DomainName = () => {
+  const dispatch = useDispatch();
     const [domainName, setDomainName] = useState("");
     return (
       <div className="vision-container">
@@ -31,8 +35,8 @@ const DomainName = () => {
             }}
           ></div>
           <div className="button-container">
-            <div className="back-text">Back</div>
-            <button>Next</button>
+            <div className="back-text"  onClick={() => dispatch(previousStep())}>Back</div>
+            <button  onClick={() => dispatch(nextStep())}>Next</button>
           </div>
         </div>
         <div className='later-text'>Set up Later</div>

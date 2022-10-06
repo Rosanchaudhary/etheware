@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { FaBars, FaLock, FaTimes } from "react-icons/fa";
-import {  NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import "./NavBar.css";
 
@@ -13,15 +13,17 @@ function Navbar() {
 
   return (
     <header>
-      <img src={logo} alt="logo" className="logo"/>
+      <img src={logo} alt="logo" className="logo" />
       <nav ref={navRef}>
-        <NavLink to='/'>App Store</NavLink>
-        <NavLink to="/login">Enterprise Plans</NavLink>
-        <NavLink to="/cats">The Etheware Difference</NavLink>
+        <NavLink to="/">App Store</NavLink>
+        <NavLink to="/dashboard">Enterprise Plans</NavLink>
+        <NavLink to="/login">The Etheware Difference</NavLink>
         <NavLink to="/domain-name">App of the Year</NavLink>
         <NavLink to="/name">Etheware Cloud</NavLink>
         <NavLink to="/create-project">Support</NavLink>
-        <NavLink to="/calander"><FaLock/></NavLink>
+        <NavLink to="/login">
+          <FaLock />
+        </NavLink>
         <button className="nav-btn nav-close-btn" onClick={showNavbar}>
           <FaTimes />
         </button>

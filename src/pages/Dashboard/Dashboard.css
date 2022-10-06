@@ -1,0 +1,35 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: white;
+  height: 120vh;
+  width: 100%;
+}
+.dashboard-container .column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+ 
+}
+.dashboard-container .title-text{
+    font-size: 34px;
+    font-weight: 600;
+}
+.dashboard-container img{
+    width: 100%;
+}
+
+@media (max-width: 480px) {
+    .dashboard-container .row {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .dashboard-container img{
+        width: 300%;
+    }
+  }

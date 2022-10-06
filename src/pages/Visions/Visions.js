@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import "./Visions.css";
+
+
+import {setVision } from "../../redux/registerSlice";
+
 import Call from "../../assets/call.png";
 import Pointer from "../../assets/pointer.png";
 import Building from "../../assets/building.png";
 import Play from "../../assets/play.png";
 import ProfileImage from "../../assets/addphoto.png";
 import { FaCheck } from "react-icons/fa";
+import { useDispatch } from "react-redux";
 
 const options = [
   { id: 0, icon: Call, title: "Build an application" },
@@ -14,13 +19,14 @@ const options = [
   { id: 3, icon: Play, title: "Modify existing app or service" },
 ];
 const Vision = () => {
-  const [vision, setVision] = useState({});
+  const dispatch = useDispatch();
+  const [vision, setTheVision] = useState({});
 
   return (
     <div className="vision-container">
-      <div className="form-controller">
-        <div class="progress">
-          <div class="color"></div>
+      <div className="form-container">
+        <div className="progress">
+          <div className="color"></div>
         </div>
         <div className="progress-bar"></div>
         <div className="vision-form"></div>
@@ -28,7 +34,7 @@ const Vision = () => {
         {options.map((option) => (
           <div
             className="options"
-            onClick={() => setVision(option)}
+            onClick={() => setTheVision(option)}
             key={option.id}
             style={{
               border:
@@ -69,7 +75,7 @@ const Vision = () => {
               Mon - Fri
             </div>
           </div>
-          <button>Next</button>
+          <button onClick={()=>dispatch(setVision(vision.title))}>Next</button>
         </div>
       </div>
     </div>

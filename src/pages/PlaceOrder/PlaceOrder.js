@@ -3,7 +3,11 @@ import Divider from "../../components/Divider";
 import Mac from "../../assets/mac.png";
 import "./PlaceOrder.css";
 
+import { useDispatch } from "react-redux";
+import { nextStep } from "../../redux/registerSlice";
+
 const PlaceOrder = () => {
+  const dispatch = useDispatch();
   return (
     <div className="checkout-page">
       <div className="checkout-container">
@@ -89,7 +93,7 @@ const PlaceOrder = () => {
           </div>
         </div>
         <div className="submit-column">
-          <button className="order-button">Place Your Order</button>
+          <button className="order-button"  onClick={() => dispatch(nextStep())}>Place Your Order</button>
           <div className="warning-text">
             Etheware Gift Cards are not eligible with some items in your order.
           </div>

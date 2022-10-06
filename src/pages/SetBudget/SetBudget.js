@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import InputSlider from "react-input-slider";
 
+
+import { useDispatch } from "react-redux";
+import { nextStep, previousStep } from "../../redux/registerSlice";
+
 const SetBudget = () => {
+  const dispatch = useDispatch();
   const [organizationName, setOrganizationName] = useState("");
   const [state, setState] = useState({ x: 10, y: 10 });
   return (
@@ -72,8 +77,8 @@ const SetBudget = () => {
           }}
         ></div>
         <div className="button-container">
-          <div className="back-text">Back</div>
-          <button>Next</button>
+          <div className="back-text"  onClick={() => dispatch(previousStep())}>Back</div>
+          <button  onClick={() => dispatch(nextStep())}>Next</button>
         </div>
       </div>
       <div className='later-text'>Set up Later</div>

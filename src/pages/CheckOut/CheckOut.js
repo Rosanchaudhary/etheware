@@ -2,7 +2,11 @@ import React from "react";
 import "./Checkout.css";
 import Paypal from "../../assets/paypal.png";
 
+import { useDispatch } from "react-redux";
+import { nextStep } from "../../redux/registerSlice";
+
 const CheckOut = () => {
+  const dispatch = useDispatch();
   return (
     <div className="checkout-page">
       <div className="checkout-container">
@@ -70,7 +74,7 @@ const CheckOut = () => {
             marginBottom: "10px",
           }}
         ></div>
-        <button className="submit-button">Continue and Review</button>
+        <button className="submit-button"  onClick={() => dispatch(nextStep())}>Continue and Review</button>
       </div>
     </div>
   );
