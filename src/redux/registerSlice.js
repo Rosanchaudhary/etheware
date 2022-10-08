@@ -1,24 +1,22 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { registerUser, addUserDetail } from "../api/registerUser";
+import { registerUser, addUserDetail, loginUser } from "../api/registerUser";
 
 const initialState = {
-  step: 0,
   user: null,
   status: "idle",
-  email:"",
+  email: "",
   country: "",
   language: "",
   fullName: "",
   contactNumber: "",
   vision: "",
   category: "",
+  errormessage: "",
 };
 export const addUserDetails = createAsyncThunk(
   "register/addUserDetail",
   async (organizationName, { getState }) => {
     const state = getState();
-
-    console.log(state.register.email);
 
     await addUserDetail(
       state.register.email,
@@ -32,25 +30,30 @@ export const addUserDetails = createAsyncThunk(
     );
   }
 );
+export const loginUserThunk = createAsyncThunk(
+  "register/loginUser",
+  async (formValues, { rejectWithValue }) => {
+    try {
+      const response = await loginUser(formValues);
+      console.log(response);
+      return response;
+    } catch (error) {
+      console.log(error.message.toString());
+      return rejectWithValue(error.message.toString());
+    }
+  }
+);
 export const registerUserThunk = createAsyncThunk(
   "register/registerUser",
-  async ({
-    email,
-    password,
-    selectCountry,
-    selectLanguage,
-    contact,
-    fullName,
-  }) => {
-    const response = await registerUser(
-      email,
-      password,
-      selectCountry,
-      selectLanguage,
-      contact,
-      fullName
-    );
-    return response;
+  async (formValues, { rejectWithValue }) => {
+    try {
+      const response = await registerUser(formValues);
+      console.log(response);
+      return response;
+    } catch (error) {
+      console.log(error.message.toString());
+      return rejectWithValue(error.message.toString());
+    }
   }
 );
 
@@ -60,7 +63,6 @@ export const registerSlice = createSlice({
   reducers: {
     setVision: (state, actions) => {
       state.vision = actions.payload;
-      state.step += 1;
     },
     setCategory: (state, actions) => {
       state.category = actions.payload;
@@ -68,13 +70,6 @@ export const registerSlice = createSlice({
     },
     setOrganizationName: (state, actions) => {
       state.organizationName = actions.payload;
-      state.step += 1;
-    },
-    nextStep: (state) => {
-      state.step += 1;
-    },
-    previousStep: (state) => {
-      state.step -= 1;
     },
   },
   extraReducers: (builder) => {
@@ -82,32 +77,43 @@ export const registerSlice = createSlice({
       state.status = "loading";
     });
     builder.addCase(registerUserThunk.fulfilled, (state, actions) => {
-      state.status = "loaded";
+      state.status = "succeeded";
       state.email = actions.payload.email;
       state.user = actions.payload.userid;
       state.country = actions.payload.country;
       state.language = actions.payload.language;
-      state.contactNumber = actions.payload.contactNumber;
+      state.contactNumber = actions.payload.contact;
       state.fullName = actions.payload.fullName;
-      state.step += 1;
     });
-    builder.addCase(addUserDetails.pending, (state) => {
+    builder.addCase(registerUserThunk.rejected, (state, actions) => {
+      state.status = "failed";
+      state.errormessage = actions.payload;
+    });
 
+    builder.addCase(loginUserThunk.pending, (state) => {
+      state.status = "loading";
+    });
+    builder.addCase(loginUserThunk.fulfilled, (state, actions) => {
+      state.status = "succeeded";
+      state.user = actions.payload.userid;
+    });
+    builder.addCase(loginUserThunk.rejected, (state, actions) => {
+      state.status = "failed";
+      state.errormessage = actions.payload;
+    });
+
+    builder.addCase(addUserDetails.pending, (state) => {
       state.status = "loading";
     });
     builder.addCase(addUserDetails.fulfilled, (state) => {
-      state.status = "loaded";
+      state.status = "succeeded";
     });
   },
 });
 
-export const {
-  nextStep,
-  previousStep,
-  setVision,
-  setCategory,
-  setOrganizationName,
-} = registerSlice.actions;
-export const selectStep = (state) => state.register.step;
+export const { setVision, setCategory, setOrganizationName } =
+  registerSlice.actions;
 
+export const selectStatus = (state) => state.register.status;
+export const errorMessage = (state) => state.register.errormessage;
 export default registerSlice.reducer;

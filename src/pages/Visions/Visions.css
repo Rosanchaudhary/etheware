@@ -9,9 +9,9 @@
 .form-container {
   display: flex;
   flex-direction: column;
-
   width: 40%;
 }
+
 .progress {
   position: relative;
   height: 10px;
@@ -32,14 +32,8 @@
   font-weight: 500;
   padding-bottom: 30px;
 }
-.vision-container button {
-  background-color: white;
-  color: black;
-  height: 50px;
-  width: 90px;
-  border-radius: 25px;
-  font-size: 20px;
-}
+
+
 .vision-container img {
   height: 170px;
 }
@@ -48,27 +42,17 @@
   border-radius: 6px;
   height: 40px;
 }
-.vision-container input[type="radio"] {
-  height: 10px;
-  width: 10px;
-  align-self: left;
-}
-.radio-button-container {
-  display: flex;
-  flex-direction: row;
 
-  align-items: center;
-  padding-right: 370px;
-}
+
 .amount-input-container {
-  display: flex; 
+  display: flex;
   flex-direction: row;
 
   align-items: center;
   padding-left: 20px;
   padding-bottom: 40px;
 }
-.options {
+.select-options {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -84,7 +68,7 @@
   flex-direction: row;
   align-items: center;
 }
-.options img {
+.select-options  img {
   height: 40px;
   padding-right: 10px;
 }
@@ -94,7 +78,40 @@
   justify-content: space-between;
   width: 100%;
 }
-.later-text {
+.button-container button{
+  background-color: white;
+  color: black;
+  height: 50px;
+  width: 500px;
+  border-radius: 25px;
+  font-size: 20px;
+}
+
+.later-text { 
   font-size: 24px;
   color: #3068fe;
+}
+
+@media only screen and (max-width: 1024px) {
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+  }
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .button-container button {
+    background-color: white;
+    color: black;
+    height: 50px;
+    width: 100%;
+    border-radius: 25px;
+    font-size: 20px;
+  }
+  .button-container img {
+    display: none;
+  }
 }

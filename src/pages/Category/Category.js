@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import "./Category.css";
+
 import Call from "../../assets/call.png";
 import Pointer from "../../assets/pointer.png";
 import Building from "../../assets/building.png";
 import ProfileImage from "../../assets/addphoto.png";
 import { FaCheck } from "react-icons/fa";
 
-import { setCategory} from "../../redux/registerSlice";
+import { setCategory } from "../../redux/registerSlice";
 import { useDispatch } from "react-redux";
+import { nextStep } from "../../redux/stepSlice";
 
 const options = [
   { id: 0, icon: Call, title: "Individual" },
@@ -18,6 +19,18 @@ const options = [
 const Category = () => {
   const dispatch = useDispatch();
   const [category, setTheCategory] = useState({});
+  const [formError, setFormError] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(Object.entries(category).length);
+    if (Object.entries(category).length === 0) {
+      setFormError("Choose one option");
+    } else {
+      dispatch(setCategory(category.title));
+      dispatch(nextStep())
+    }
+  };
   return (
     <div className="vision-container">
       <div className="form-container">
@@ -29,7 +42,7 @@ const Category = () => {
         <div className="title-text"> What category benefits you?</div>
         {options.map((option) => (
           <div
-            className="options"
+            className="select-options"
             onClick={() => setTheCategory(option)}
             key={option.id}
             style={{
@@ -45,6 +58,7 @@ const Category = () => {
             {option.id === category.id ? <FaCheck color="blue" /> : null}
           </div>
         ))}
+          <p>{formError}</p>
         <div
           style={{
             width: "100%",
@@ -65,13 +79,11 @@ const Category = () => {
               <strong>Need support?</strong>
             </div>
             <div>
-              Call or text for free setup support at <br />
-              +1(888) 546-6865 <br />
-              9am to 9pm PT, <br />
-              Mon - Fri
+              Call or text for free setup support at +1(888) 546-6865 9am to 9pm
+              PT, Mon - Fri
             </div>
           </div>
-          <button  onClick={()=>dispatch(setCategory(category.title))}>Next</button>
+          <button onClick={handleSubmit}>Next</button>
         </div>
       </div>
     </div>

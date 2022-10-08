@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Congratulations.css";
 
 const Congratulations = () => {
@@ -38,7 +39,7 @@ const Congratulations = () => {
             <div className="option-box">
               <div className="top-text">Boss Mode</div>
               <div className="description">
-              Choose your preferred settings and let us know your throughouts.
+                Choose your preferred settings and let us know your throughouts.
               </div>
             </div>
           </div>
@@ -50,7 +51,9 @@ const Congratulations = () => {
           <p>You just deployed a new project in vercel.</p>
         </div>
         <div className="second-row">
-          <button>Go to Dashboard</button>
+          <Link to="/login" style={{ width: "100%" }}>
+            <button>Go to Dashboard</button>
+          </Link>
         </div>
       </div>
       <div className="bottom-column">

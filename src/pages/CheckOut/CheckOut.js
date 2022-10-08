@@ -3,11 +3,11 @@ import "./Checkout.css";
 import Paypal from "../../assets/paypal.png";
 
 import { useDispatch } from "react-redux";
-import { nextStep } from "../../redux/registerSlice";
+import {nextStep} from '../../redux/stepSlice';
 
 const CheckOut = () => {
   const dispatch = useDispatch();
-  return (
+  return ( 
     <div className="checkout-page">
       <div className="checkout-container">
         <div className="row">
@@ -24,7 +24,7 @@ const CheckOut = () => {
         ></div>
         <div className="title">How do you want to pay?</div>
         <div className="payment-options">
-          <div className="row bottom-padding">
+          <div className="box-row bottom-padding">
             <div className="payment-card">
               <div className="row">
                 <div className="payment-title">Visa 5114</div>
@@ -38,7 +38,7 @@ const CheckOut = () => {
               complete your purchase.
             </div>
           </div>
-          <div className="row bottom-padding">
+          <div className="box-row bottom-padding">
             <div className="payment-card">
               <div className="payment-title">New Credit or Debit Card</div>
               <div className="payment-subtitle">
@@ -49,7 +49,7 @@ const CheckOut = () => {
             </div>
             <div className="information-text"></div>
           </div>
-          <div className="row bottom-padding">
+          <div className="box-row bottom-padding">
             <div className="payment-card">
               <img src={Paypal} alt="paypal" height={"60px"} width={"140px"} />
             </div>

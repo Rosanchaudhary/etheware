@@ -4,10 +4,16 @@ import Mac from "../../assets/mac.png";
 import "./PlaceOrder.css";
 
 import { useDispatch } from "react-redux";
-import { nextStep } from "../../redux/registerSlice";
+import { nextStep } from "../../redux/stepSlice";
+import { addProject } from "../../redux/projectSlice";
 
 const PlaceOrder = () => {
   const dispatch = useDispatch();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(addProject("test"));
+    dispatch(nextStep())
+  };
   return (
     <div className="checkout-page">
       <div className="checkout-container">
@@ -93,7 +99,9 @@ const PlaceOrder = () => {
           </div>
         </div>
         <div className="submit-column">
-          <button className="order-button"  onClick={() => dispatch(nextStep())}>Place Your Order</button>
+          <button className="order-button" onClick={handleSubmit}>
+            Place Your Order
+          </button>
           <div className="warning-text">
             Etheware Gift Cards are not eligible with some items in your order.
           </div>

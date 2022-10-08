@@ -5,11 +5,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/NavBar/NavBar";
 import OrganizationName from "./pages/OrganizationName/OrganizationName";
 import CreateProject from "./pages/CreateProject/CreateProject";
-import DomainName from "./pages/DomainName/DomainName";
 import HomeScreen from "./pages/HomeScreen/HomeScreen";
-import Dashboard from "./pages/Dashboard/Dashboard";
-import LoginScreen from "./pages/LoginScreen/LoginScreen";
-import SignupScreen from './pages/SignupScreen/SignupScreen'
+import UsersScreen from "./pages/UsersScreen/UsersScreen";
+import Category from "./pages/Category/Category";
 
 
 function App() {
@@ -17,14 +15,13 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" exact element={<HomeScreen />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/login" element={<LoginScreen />} />
-        <Route path="/domain-name" element={<DomainName />} />
+        <Route path="/" exact element={<UsersScreen />} />
+        <Route path="/dashboard" element={<Category />} />
+        <Route path="/domain-name" element={<CreateProject />} />
         <Route path="/name" element={<OrganizationName />} />
         <Route path="/create-project" element={<CreateProject />} />
-        <Route path="/login" element={<LoginScreen />} />
-        <Route path="/register" element={<SignupScreen />} />
+        <Route path="/login" element={<UsersScreen />} />
+        <Route path="/register" element={<HomeScreen />} />
       </Routes>
     </Router>
   );

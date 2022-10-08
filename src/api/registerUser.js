@@ -5,29 +5,47 @@ import {
   createUserWithEmailAndPassword,
   // updateProfil,
   // onAuthStateChanged,
-  // signInWithEmailAndPassword,
+  signInWithEmailAndPassword,
   // signOut,
 } from "firebase/auth";
 
-export const registerUser = async (
-  email,
-  password,
-  country,
-  language,
-  contactNumber,
-  fullName
-) => {
+export const loginUser = async (formValues) => {
+  const auth = getAuth();
+  try {
+    const response = await signInWithEmailAndPassword(
+      auth,
+      formValues.email,
+      formValues.password
+    );
+    const userid = response.user.uid;
+    return userid;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const registerUser = async (formValues) => {
   const auth = getAuth();
   try {
     const response = await createUserWithEmailAndPassword(
       auth,
-      email,
-      password
+      formValues.email,
+      formValues.password
     );
     const userid = response.user.uid;
-    return {email, userid, country, language, contactNumber, fullName };
+    const data = {
+      email: formValues.email,
+      userid: userid,
+      country: formValues.country,
+      language: formValues.language,
+      contact: formValues.contact,
+      fullName: formValues.fullName,
+    };
+    console.log(data);
+    return data;
   } catch (error) {
     console.log(error);
+    throw error;
   }
 };
 
@@ -43,8 +61,7 @@ export const addUserDetail = async (
 ) => {
   try {
     const auth = getAuth();
-    console.log(email);
-    console.log(fullName);
+
     await setDoc(doc(db, "users", auth.currentUser.uid), {
       email: email,
       fullName: fullName,

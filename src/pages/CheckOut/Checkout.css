@@ -9,8 +9,12 @@
 .checkout-container {
   display: flex;
   flex-direction: column;
-
   width: 80%;
+}
+.box-row{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 .row {
   display: flex;
@@ -35,7 +39,7 @@
     padding-bottom:20px ;
 }
 .payment-options {
-  width: 80%;
+  width: 100%;
 }
 .payment-card {
   display: flex;
@@ -59,7 +63,7 @@
   height: 80px;
   width: 48%;
 }
-.submit-button{
+.submit-button{ 
     width: 40%;
     height: 40px;
     background-color: #306fda;
@@ -67,4 +71,36 @@
     border-radius: 12px;
     font-size: 20px;
     color: whitesmoke;
+}
+
+@media only screen and (max-width: 768px) {
+  .checkout-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    height: max-content;
+  }
+  .payment-options {
+    width: 100%;
+  }
+  .payment-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid grey;
+    border-radius: 12px;
+    height: max-content;
+    width: 80%;
+    padding: 10px;
+  }
+  .box-row{
+    display: flex;
+    flex-direction: column;
+  }
+  .information-text {
+    height:max-content;
+    width: 80%;
+  }
 }

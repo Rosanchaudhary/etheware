@@ -10,7 +10,7 @@ const TextField = ({ label, value, setValue, placeholder ,icon}) => {
 
       <input 
         placeholder={placeholder}
-        className="select-container"
+        className="select-container" 
         value={value}
         onChange={(e) => setValue(e.target.value)}
       ></input>

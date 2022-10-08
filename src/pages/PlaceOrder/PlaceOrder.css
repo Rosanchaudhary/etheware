@@ -32,39 +32,17 @@
 .bottom-padding {
   padding-bottom: 20px;
 }
-.payment-options {
-  width: 80%;
-}
-.payment-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border: 1px solid grey;
-  border-radius: 12px;
-  height: 80px;
-  width: 50%;
-  padding: 10px;
-}
-.payment-title {
-  font-size: 20px;
-  font-weight: 600;
-}
-.payment-subtitle {
-  font-size: 12px;
-  font-weight: 400;
-}
+
 .warning-text {
   height: 80px;
-
 }
 .submit-column {
-    margin-top: 40px;
+  margin-top: 40px;
   align-self: end;
   width: 400px;
-
 }
 .order-button {
-width: 100%;
+  width: 100%;
 
   height: 40px;
   background-color: #306fda;
@@ -89,4 +67,24 @@ width: 100%;
 .third-title {
   font-size: 12px;
   font-weight: 500;
+}
+
+@media only screen and (max-width: 768px) {
+  .title {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .top-title {
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .second-title {
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .submit-column {
+    margin-top: 40px;
+    align-self: center;
+    width: 80%;
+  }
 }

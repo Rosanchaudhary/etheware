@@ -1,17 +1,55 @@
 import React, { useRef, useState } from "react";
-import TextFieldBorder from "../../components/TextFieldBorder/TextFieldBorder";
-import AddTemplate from "../../assets/addtemplate.png";
 import "./CreateProject.css";
+
 import { FaArrowRight } from "react-icons/fa";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
+
 import DropDownIcon from "../../components/DropDownIcon/DropDownIcon";
 import ProjectImage from "../../assets/addproject.png";
+import TextFieldBorder from "../../components/TextFieldBorder/TextFieldBorder";
+import AddTemplate from "../../assets/addtemplate.png";
 
+import { useDispatch } from "react-redux";
+import { nextStep } from "../../redux/stepSlice";
+import { projectTitle,uploadProjectPhoto } from "../../redux/projectSlice";
 
 const CreateProject = () => {
+  const dispatch = useDispatch();
   const [projectName, setProjectName] = useState("");
   const [projectId, setProjectId] = useState("");
   const [selectedImage, setSelectedImage] = useState();
+
+  const [formErrors, setFormErrors] = useState({});
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formValues = {
+      projectName: projectName,
+      projectId: projectId,
+      selectedImage: selectedImage,
+    };
+    setFormErrors(validate(formValues));
+    if (Object.entries(validate(formValues)).length === 0) {
+      dispatch(uploadProjectPhoto(selectedImage));
+      dispatch(projectTitle({ projectName, projectId}));
+      dispatch(nextStep());
+    }
+  };
+
+  const validate = (values) => {
+    const errors = {};
+
+    if (!values.projectName) {
+      errors.projectName = "Project name is required!";
+    }
+    if (!values.projectId) {
+      errors.projectId = "project Id is required!";
+    }
+    if (!values.selectedImage) {
+      errors.selectedImage = "Image is required!";
+    }
+    return errors;
+  };
 
   const imageChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -40,6 +78,7 @@ const CreateProject = () => {
           value={projectName}
           setValue={setProjectName}
         />
+        <p>{formErrors.projectName}</p>
         <div className="template-options">
           <div className="black-text">Template</div>
           <div className="blue-text">More Templates</div>
@@ -50,10 +89,7 @@ const CreateProject = () => {
           </div>
           <div className="template-text">
             <div>Blank Project</div>
-            <div>
-              Start freash with a blank business <br />
-              project template.
-            </div>
+            Start freash with a blank business project template.
           </div>
           <FaArrowRight />
         </div>
@@ -74,17 +110,12 @@ const CreateProject = () => {
           value={projectId}
           onChange={(e) => setProjectId(e.target.value)}
         />
+        <p>{formErrors.projectId}</p>
         <div className="submit-buttons">
-          <button
-            className="create-button"
-            onClick={() => console.log(projectName)}
-          >
+          <button className="create-button" onClick={handleSubmit}>
             Create Project
           </button>
-          <button
-            className="cancel-button"
-            onClick={removeSelectedImage}
-          >
+          <button className="cancel-button" onClick={removeSelectedImage}>
             Cancel
           </button>
         </div>
@@ -97,6 +128,7 @@ const CreateProject = () => {
         ) : (
           <img src={ProjectImage} alt="project" />
         )}
+        <p>{formErrors.selectedImage}</p>
         <div className="upload-buttons">
           <button onClick={handleClick} className="cancel-button">
             Upload

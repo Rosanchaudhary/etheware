@@ -1,14 +1,27 @@
 import React, { useState } from "react";
 import InputSlider from "react-input-slider";
 
-
 import { useDispatch } from "react-redux";
-import { nextStep, previousStep } from "../../redux/registerSlice";
+import { setBudget } from "../../redux/projectSlice";
+import { nextStep, previousStep } from "../../redux/stepSlice";
+
+import "./SetBudget.css";
 
 const SetBudget = () => {
   const dispatch = useDispatch();
-  const [organizationName, setOrganizationName] = useState("");
+  const [budget, setTheBudget] = useState("");
   const [state, setState] = useState({ x: 10, y: 10 });
+  const [formError, setFormError] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (budget.length === 0) {
+      setFormError("This field is required");
+    } else {
+      dispatch(nextStep());
+      dispatch(setBudget(budget));
+    }
+  };
   return (
     <div className="vision-container">
       <div className="form-container">
@@ -26,43 +39,40 @@ const SetBudget = () => {
         </div>
         <div className="amount-input-container">
           <input
-            style={{ width: "20%", marginRight: "10px" }}
             placeholder="$"
-            value={organizationName}
-            onChange={(e) => setOrganizationName(e.target.value)}
+            value={budget}
+            onChange={(e) => setTheBudget(e.target.value)}
           />
           <div>
-            $784 Monthly Max <br />
-            Cancel Anytime x4 Developer Speed with Priority Support
+            $784 Monthly Max Cancel Anytime x4 Developer Speed with Priority
+            Support
           </div>
         </div>
+        <p>{formError}</p>
         <InputSlider
           styles={{
             track: {
-              height:2,
-              width:500,
-              backgroundColor: '#ccd8fd',
-              
+              height: 2,
+              width: "100%",
+              backgroundColor: "#ccd8fd",
             },
             active: {
-              backgroundColor: '#5483ec',
-            
+              backgroundColor: "#5483ec",
             },
             thumb: {
               width: 10,
               height: 10,
-              backgroundColor:"#5483ec"
+              backgroundColor: "#5483ec",
             },
             disabled: {
-              opacity: 0.5
-            }
+              opacity: 0.5,
+            },
           }}
-        
           axis="x"
           x={state.x}
           onChange={({ x }) => setState((state) => ({ ...state, x }))}
         />
-        <div className="info-text" style={{paddingTop:"20px"}}>
+        <div className="info-text">
           This is confidential and just help us setup your app under the correct
           information.
         </div>
@@ -76,12 +86,14 @@ const SetBudget = () => {
             marginBottom: "20px",
           }}
         ></div>
-        <div className="button-container">
-          <div className="back-text"  onClick={() => dispatch(previousStep())}>Back</div>
-          <button  onClick={() => dispatch(nextStep())}>Next</button>
+        <div className="button-row">
+          <div className="back-text" onClick={() => dispatch(previousStep())}>
+            Back
+          </div>
+          <button onClick={handleSubmit}>Next</button>
         </div>
       </div>
-      <div className='later-text'>Set up Later</div>
+      <div className="later-text">Set up Later</div>
     </div>
   );
 };

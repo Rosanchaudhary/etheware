@@ -1,14 +1,27 @@
 import React, { useState } from "react";
 
-
 import { useDispatch } from "react-redux";
-import { addUserDetails, previousStep } from "../../redux/registerSlice";
-
+import { addUserDetails } from "../../redux/registerSlice";
+//import { addUserDetails} from "../../redux/registerSlice";
+import {nextStep,previousStep} from '../../redux/stepSlice';
 
 import "./OrganizationName.css";
 const OrganizationName = () => {
   const dispatch = useDispatch();
   const [organizationName, setOrganizationName] = useState("");
+  const [formError, setFormError] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (organizationName.length === 0) {
+      setFormError("This field is required");
+    } else {
+      dispatch(nextStep())
+      dispatch(addUserDetails(organizationName));
+    }
+  };
+
+  
   return (
     <div className="vision-container">
       <div className="form-container">
@@ -18,6 +31,7 @@ const OrganizationName = () => {
         <div className="progress-bar"></div>
         <div className="vision-form"></div>
         <div className="title-text"> OK, What is your organization name?</div>
+        <p>{formError}</p>
         <input
           placeholder="Your organization name"
           value={organizationName}
@@ -37,12 +51,14 @@ const OrganizationName = () => {
             marginBottom: "20px",
           }}
         ></div>
-        <div className="button-container">
+        <div className="button-row">
           <div className="back-text" onClick={() => dispatch(previousStep())}>
             Back
           </div>
 
-          <button onClick={() => dispatch(addUserDetails(organizationName))}>Next</button>
+          <button onClick={handleSubmit}> 
+            Next
+          </button>
           {/* <button onClick={() => dispatch(nextStep())}>Next</button> */}
         </div>
       </div>

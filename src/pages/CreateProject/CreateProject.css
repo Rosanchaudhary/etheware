@@ -4,19 +4,9 @@
   justify-content: space-around;
   align-items: center;
   background-color: white;
-  height: 120vh; 
+  height: 120vh;
 }
-@media (max-width: 880px) {
-  .project-container {
-    display: flex;
-    flex-direction: column-reverse;
-    justify-content: space-around;
-    align-items: center;
-    background-color: white;
-    height: 120vh; 
-  }
-  
-}
+
 .create-project {
   display: flex;
   flex-direction: column;
@@ -46,9 +36,7 @@
   height: 100px;
   width: 100%;
   border: 1px solid grey;
-
   border-radius: 20px;
-
   margin-bottom: 20px;
 }
 .create-project p {
@@ -85,19 +73,17 @@
   display: flex;
   flex-direction: row;
   align-items: baseline;
-
 }
-.project-id-input{
+.project-id-input {
   width: 150px;
   height: 40px;
   border: 1px solid grey;
   border-radius: 6px;
-  
 }
-.submit-buttons{
+.submit-buttons {
   padding-top: 20px;
 }
-.create-button{
+.create-button {
   width: 100px;
   height: 30px;
   border: none;
@@ -107,7 +93,7 @@
   font-weight: 600;
   margin-right: 10px;
 }
-.cancel-button{
+.cancel-button {
   width: 80px;
   height: 30px;
   border: none;
@@ -121,8 +107,49 @@
 .upload-image {
   display: flex;
   flex-direction: column;
-
   align-items: center;
   height: max-content;
   width: 500px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .project-container {
+    display: flex;
+    flex-direction: column-reverse;
+    background-color: white;
+    height: max-content;
+  }
+  .create-project {
+    display: flex;
+    flex-direction: column;
+    height: max-content;
+    width: 80%;
+  }
+  .upload-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: max-content;
+    width: 80%;
+  }
+  .upload-image img {
+    height: 300px;
+    width: 100%;
+  }
+  .template-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: max-content;
+    width: 100%;
+    border: 1px solid grey;
+    border-radius: 20px;
+    margin-bottom: 20px;
+   
+  }
+  .template-text {
+    padding-right: 10px;
+
+  }
 }
